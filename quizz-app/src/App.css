@@ -1,4 +1,6 @@
 body{
-    background-image: url("https://www.arboroperations.com.au/wp-content/uploads/2021/08/antarctic-beech.jpg") ;
+    background-image: url("./assets/background.webp") ;
     background-repeat: no-repeat;
+    background-size: cover;
+
 }
