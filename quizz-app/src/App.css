@@ -4,3 +4,10 @@ body{
     background-size: cover;
 
 }
+.container{
+    margin: 100px;
+    padding: 20px 50px ;
+    border-radius: 10px;
+    display: center;
+    background-color: antiquewhite;
+}
