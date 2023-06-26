@@ -4,3 +4,12 @@ body{
     background-size: cover;
 
 }
+
+.container{
+    background-color: antiquewhite;
+    margin: 50px auto;
+    padding: 50px 50px;
+    border-radius: 10px;
+    align-items: center;
+    max-width: 800px;
+}
