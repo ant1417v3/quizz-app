@@ -1,13 +1,16 @@
 
 import './App.css'
 import React from 'react'
+import QandA from './QandA'
+import {nanoid} from 'nanoid'
+
 
 function App() {
 
 
-  const [count, setCount] =  React.useState(0)
+
   const [dataQuizz, setDataQuizz] = React.useState([])
-  const [quizz, setQuizz] = React.useState({})
+  const [quizzs, setQuizz] = React.useState({})
 
 
   React.useEffect(() => {
@@ -17,21 +20,16 @@ function App() {
 
   },[])
   
-  function getCategory(){
-    const category = dataQuizz[count]
-    setCount(prevCount => prevCount +1)
-    setQuizz(category)
-    
-  }
- 
+  console.log(dataQuizz)
+
+
+  const QuestionElement = dataQuizz.map(quizz =>
+  <QandA key={nanoid()}  quizz={quizz}></QandA>)
 
   return (
     <main>
-      <div className='container'>       
-                
-        <h2> {count}</h2>
-        <button onClick={getCategory}> Increase</button>
-        <h2>{quizz.question} </h2>
+      <div className='container'>         
+        {QuestionElement}
       </div>
   
     </main>
