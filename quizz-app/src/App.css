@@ -5,11 +5,17 @@ body{
 
 }
 
-.container{
+.container {
     background-color: antiquewhite;
     margin: 50px auto;
     padding: 50px 50px;
     border-radius: 10px;
     align-items: center;
     max-width: 800px;
+}
+
+.buttonAnswers {
+    margin: 20px;
+    max-width: auto;
+
 }

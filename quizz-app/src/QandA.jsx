@@ -1,5 +1,6 @@
 
 import {decode} from 'html-entities'
+import { nanoid } from 'nanoid';
 
 export default function QandA(props){
 
@@ -7,8 +8,6 @@ export default function QandA(props){
     
     let mixAnswers = props.quizz.incorrect_answers
     mixAnswers.push(props.quizz.correct_answer);
-
-    console.log(mixAnswers)
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -37,14 +36,16 @@ export default function QandA(props){
     
     shuffleArray(mixAnswers)
     mixAnswers = removeUndefinedArray(mixAnswers)
-    console.log(mixAnswers)
-      
 
+    const answersButton = mixAnswers.map(mixAnswer => 
+      <button key={nanoid()} className='buttonAnswers'> {decode(mixAnswer)} </button>)
+    
 
     return(
         <div>
             <h2>{decode(props.quizz.question)}</h2>
             <h2>{decode(mixAnswers[0])}</h2>
+            {answersButton}
         </div>
     )
 }

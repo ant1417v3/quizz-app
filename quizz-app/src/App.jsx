@@ -3,7 +3,6 @@ import './App.css'
 import React from 'react'
 import QandA from './QandA'
 import {nanoid} from 'nanoid'
-import {decode} from 'html-entities'
 
 
 function App() {
@@ -25,22 +24,16 @@ function App() {
   console.log(dataQuizz)
 
 
-
   const QuestionElement = dataQuizz.map(quizz =>
   <QandA key={nanoid()} quizz={quizz}></QandA>)
 
   return (
-    <main>
-      
+    <main>    
       <div className='container'>   
-        
-  
         {QuestionElement}
-      </div>
-  
+      </div> 
     </main>
-    
-    
+     
   )
 }
 
