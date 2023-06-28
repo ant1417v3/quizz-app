@@ -38,14 +38,16 @@ export default function QandA(props){
     mixAnswers = removeUndefinedArray(mixAnswers)
 
     const answersButton = mixAnswers.map(mixAnswer => 
-      <button key={nanoid()} className='buttonAnswers'> {decode(mixAnswer)} </button>)
+      <div key={nanoid()} className='boxAnswers'> {decode(mixAnswer)} </div>)
     
 
     return(
         <div>
             <h2>{decode(props.quizz.question)}</h2>
-            <h2>{decode(mixAnswers[0])}</h2>
-            {answersButton}
+            <div className='answers-container'>
+              {answersButton}
+            </div>
+            
         </div>
     )
 }
