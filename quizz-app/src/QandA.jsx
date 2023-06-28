@@ -3,8 +3,12 @@ import {decode} from 'html-entities'
 
 export default function QandA(props){
 
+    
+    
     let mixAnswers = props.quizz.incorrect_answers
-    mixAnswers.splice(1,0,props.quizz.corect_answer)
+    mixAnswers.push(props.quizz.correct_answer);
+
+    console.log(mixAnswers)
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -12,7 +16,28 @@ export default function QandA(props){
           [array[i], array[j]] = [array[j], array[i]];
         }
       }
+
+
+    function removeUndefinedArray(array){
+      let indicesToRemove = [];
+
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] === undefined) {
+          indicesToRemove.push(i);
+        }
+      }
+    
+      for (let i = indicesToRemove.length - 1; i >= 0; i--) {
+        array.splice(indicesToRemove[i], 1);
+      }
+
+      return array;
+
+    }
+    
     shuffleArray(mixAnswers)
+    mixAnswers = removeUndefinedArray(mixAnswers)
+    console.log(mixAnswers)
       
 
 

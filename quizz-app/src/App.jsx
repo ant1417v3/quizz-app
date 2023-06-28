@@ -3,6 +3,7 @@ import './App.css'
 import React from 'react'
 import QandA from './QandA'
 import {nanoid} from 'nanoid'
+import {decode} from 'html-entities'
 
 
 function App() {
@@ -16,19 +17,24 @@ function App() {
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=10")
     .then(res => res.json())
-    .then(data => setDataQuizz(data.results))
+    .then(data => setDataQuizz(data.results))   
+    
 
   },[])
-  
+
   console.log(dataQuizz)
 
 
+
   const QuestionElement = dataQuizz.map(quizz =>
-  <QandA key={nanoid()}  quizz={quizz}></QandA>)
+  <QandA key={nanoid()} quizz={quizz}></QandA>)
 
   return (
     <main>
-      <div className='container'>         
+      
+      <div className='container'>   
+        
+  
         {QuestionElement}
       </div>
   
