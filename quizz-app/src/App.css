@@ -5,11 +5,26 @@ body{
 
 }
 
-.container{
+.container {
     background-color: antiquewhite;
     margin: 50px auto;
     padding: 50px 50px;
     border-radius: 10px;
     align-items: center;
     max-width: 800px;
+}
+
+.boxAnswers {
+    height: 20px;
+    width: 100px;
+    padding: 5px 20px 20px 20px;
+    margin: auto;
+    border-radius:20px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.answers-container{
+    display: grid;
+    grid-template: auto auto / repeat(5, 1fr);
 }
