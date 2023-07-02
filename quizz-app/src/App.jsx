@@ -1,29 +1,37 @@
 
 import './App.css'
+import React from 'react'
+import QandA from './QandA'
+import {nanoid} from 'nanoid'
+
 
 function App() {
 
-  async function fetchData() {
-    const response = await fetch("https://opentdb.com/api.php?amount=10&category=15");
-    const jsonData = await response.json();
-    console.log(jsonData);
-  }
 
+
+  const [dataQuizz, setDataQuizz] = React.useState([])
+  const [quizzs, setQuizz] = React.useState({})
+
+
+  React.useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=10")
+    .then(res => res.json())
+    .then(data => setDataQuizz(data.results))
+
+  },[])
   
+  console.log(dataQuizz)
+
+
+  const QuestionElement = dataQuizz.map(quizz =>
+  <QandA key={nanoid()}  quizz={quizz}></QandA>)
 
   return (
     <main>
-
-      <div className='contain'>
-      <h2> First question</h2>
-      <button>First answer</button>
-      <h2> Second question</h2>
-      <h2> Third question</h2>
-      <h2> Fourth question</h2>
-      <h2> Fifth question</h2>
+      <div className='container'>         
+        {QuestionElement}
       </div>
-      
-      
+  
     </main>
     
     
