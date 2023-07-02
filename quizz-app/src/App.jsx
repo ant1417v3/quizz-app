@@ -9,11 +9,12 @@ import {decode} from 'html-entities'
 function App() {
 
 
-
+  // mot lan clicked la luu lai gia tri do, xong se check vs dap an tai do
   const [dataQuizz, setDataQuizz] = React.useState([])
   const[questions, setQuestions] =React.useState([])
 
   const [answers, setAnswers] = React.useState({
+    isHold: false,
     correct_answer:"",
     all_answers:[],
   })
@@ -30,11 +31,17 @@ function App() {
   function getAllQuestions(array) {
     const allquestions = [];
     for (let i = 0; i < array.length; i++) {
-      allquestions[i] = array[i].question
-      
+      allquestions[i] = array[i].question    
     }
     return allquestions
   }
+
+  function getHoldAnswer(){
+    setAnswers(prev =>({
+      ...prev,
+      isHold: !prev.isHold
+    }))
+}
 
   function startGame(){
     const newQuestions = getAllQuestions(dataQuizz)
