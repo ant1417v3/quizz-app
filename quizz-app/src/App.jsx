@@ -13,12 +13,12 @@ function App() {
   const [dataQuizz, setDataQuizz] = React.useState([])
   const[questions, setQuestions] =React.useState([])
 
-  const [answers, setAnswers] = React.useState({
-    isHold: false,
+  const [answers, setAnswers] = React.useState(
+    [{
+    questions:"",
     correct_answer:"",
     all_answers:[],
-  })
-  
+  }])
 
 
   React.useEffect(() => {
@@ -34,8 +34,24 @@ function App() {
       allquestions[i] = array[i].question    
     }
     return allquestions
+
   }
 
+  function getAllQuestions2(array){
+    const allQuestions =array
+    return allQuestions
+  }
+
+  function getAllAnswers(array) {
+    const allAnswers = [];
+    for (let i = 0; i < array.length; i++) {
+      allAnswers[i] = array[i].incorrect_answers    
+    }
+
+    return allAnswers
+
+  }
+    
   function getHoldAnswer(){
     setAnswers(prev =>({
       ...prev,
@@ -43,13 +59,17 @@ function App() {
     }))
 }
 
+
   function startGame(){
     const newQuestions = getAllQuestions(dataQuizz)
+    const newAnswers = getAllAnswers(dataQuizz)
     setQuestions(newQuestions) 
+    setAnswers(prev => ({
+      ...prev,
+      all_answers: newAnswers
+    }))
+    console.log(answers)
   }
-
-  console.log(dataQuizz)
-
 
   // const QuestionElement = dataQuizz.map(quizz =>
   // <QandA key={nanoid()} quizz={quizz} ></QandA>)
