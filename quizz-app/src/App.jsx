@@ -33,6 +33,9 @@ function App() {
     for (let i = 0; i < array.length; i++) {
       allquestions[i] = array[i].question    
     }
+    array.map(array => { 
+      const {correct_answer, incorrect_answers} = array;     
+    })
     return allquestions
 
   }
