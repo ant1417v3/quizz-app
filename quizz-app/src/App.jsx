@@ -11,7 +11,7 @@ function App() {
 
   // mot lan clicked la luu lai gia tri do, xong se check vs dap an tai do
   const [dataQuizz, setDataQuizz] = React.useState([])
-  const[questions, setQuestions] =React.useState([])
+  const [questions, setQuestions] =React.useState([])
 
   const [answers, setAnswers] = React.useState(
     [{
@@ -34,7 +34,9 @@ function App() {
       allquestions[i] = array[i].question    
     }
     array.map(array => { 
-      const {correct_answer, incorrect_answers} = array;     
+      const {correct_answer, incorrect_answers} = array;   
+/// way to solution  
+      console.log(correct_answer)
     })
     return allquestions
 
@@ -71,7 +73,7 @@ function App() {
       ...prev,
       all_answers: newAnswers
     }))
-    console.log(answers)
+    console.log(dataQuizz)
   }
 
   // const QuestionElement = dataQuizz.map(quizz =>
