@@ -29,58 +29,45 @@ function App() {
   },[])
 
   function getAllQuestions(array) {
-    const allquestions = [];
-    for (let i = 0; i < array.length; i++) {
-      allquestions[i] = array[i].question    
-    }
-    array.map(array => { 
+     const mixAnswers = array.map(array => { 
       const {correct_answer, incorrect_answers} = array;   
-/// way to solution  
-      console.log(correct_answer)
-    })
-    return allquestions
-
-  }
-
-  function getAllQuestions2(array){
-    const allQuestions =array
-    return allQuestions
-  }
-
-  function getAllAnswers(array) {
-    const allAnswers = [];
-    for (let i = 0; i < array.length; i++) {
-      allAnswers[i] = array[i].incorrect_answers    
+      const all_answers = [...incorrect_answers, correct_answer]
+      const randomAnswer = all_answers.slice().sort(() => Math.random() - 0.5)
+      const indexCorrectAnswer = randomAnswer.findIndex(answer => answer == correct_answer)
+      console.log(all_answers)
+      console.log(randomAnswer)
+      console.log(indexCorrectAnswer)
+    return{
+      ...array,
+      correct_answer: correct_answer,
+      incorrect_answers: incorrect_answers,
+      all_answers: all_answers,
     }
-
-    return allAnswers
+/// way to solution  
+    })
+    console.log(mixAnswers)
+    return mixAnswers
 
   }
-    
-  function getHoldAnswer(){
-    setAnswers(prev =>({
-      ...prev,
-      isHold: !prev.isHold
-    }))
-}
 
 
   function startGame(){
     const newQuestions = getAllQuestions(dataQuizz)
-    const newAnswers = getAllAnswers(dataQuizz)
     setQuestions(newQuestions) 
-    setAnswers(prev => ({
-      ...prev,
-      all_answers: newAnswers
-    }))
-    console.log(dataQuizz)
+    console.log(newQuestions)
   }
 
   // const QuestionElement = dataQuizz.map(quizz =>
   // <QandA key={nanoid()} quizz={quizz} ></QandA>)
 
   const QuestionElement = questions.map(question =>
-    <h2 key={nanoid()}>{decode(question)}</h2>)
+
+    <div key={question}>
+        <h2>{decode(question.question)}</h2>
+        {question.all_answers.map(answ =>
+            <button key={answ}>{decode(answ)}</button>)}
+
+    </div>)
 
   return (
     <main>    
