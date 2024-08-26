@@ -33,39 +33,70 @@ function App() {
       const {correct_answer, incorrect_answers} = array;   
       const all_answers = [...incorrect_answers, correct_answer]
       const randomAnswer = all_answers.slice().sort(() => Math.random() - 0.5)
-      const indexCorrectAnswer = randomAnswer.findIndex(answer => answer == correct_answer)
-      console.log(all_answers)
       console.log(randomAnswer)
-      console.log(indexCorrectAnswer)
+      const all_answers_on = randomAnswer.map(answer =>{
+          return{
+            answer: answer,
+            style: true,
+            on: true,
+          }
+      })
+      const indexCorrectAnswer = randomAnswer.findIndex(answer => answer == correct_answer)
+
+      console.log(correct_answer)
+
+      console.log(all_answers_on)
+
     return{
       ...array,
       correct_answer: correct_answer,
       incorrect_answers: incorrect_answers,
-      all_answers: all_answers,
+      all_answers: all_answers_on,
     }
-/// way to solution  
     })
+
     console.log(mixAnswers)
     return mixAnswers
 
+  }
+
+  function changestyle() {
+    const newQuestions = questions.map(question => { 
+      return {
+        ...question,
+        all_answers: question.all_answers.map(answ => {
+          return {
+            ...answ,
+            style: !answ.style,
+          }
+        })
+      }
+    })
+  
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      
+    }
+  
+    return newQuestions;
+    console.log(newQuestions)
+    setQuestions(newQuestions)
   }
 
 
   function startGame(){
     const newQuestions = getAllQuestions(dataQuizz)
     setQuestions(newQuestions) 
-    console.log(newQuestions)
   }
 
-  // const QuestionElement = dataQuizz.map(quizz =>
-  // <QandA key={nanoid()} quizz={quizz} ></QandA>)
+
 
   const QuestionElement = questions.map(question =>
 
     <div key={question}>
         <h2>{decode(question.question)}</h2>
         {question.all_answers.map(answ =>
-            <button key={answ}>{decode(answ)}</button>)}
+            <button onClick={changestyle} className='boxAnswers' key={answ.answer} >{decode(answ.answer)}</button>)}
 
     </div>)
 
